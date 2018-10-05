@@ -3,7 +3,7 @@ const io = require('socket.io')(app);
 const ioc = require('socket.io-client');
 const fs = require('fs');
 
-app.listen(80);
+app.listen(8080);
 
 let socketRaspi = ioc.connect('http://localhost:3000/');
 
