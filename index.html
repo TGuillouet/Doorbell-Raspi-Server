@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>HomePage</h1>
+    <button class="emitter" data-sound-name="NeedBackup">Need backup</button>
+    <button class="emitter" data-sound-name="NeedBackup">My Sound 2</button>
+    <button class="emitter" data-sound-name="NeedBackup">My Sound 3</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io('http://localhost:80');
+        let buttons = document.getElementsByClassName('emitter');
+        
+        Array.prototype.forEach.call(buttons, (btn) => {
+            btn.addEventListener('click', () => {
+                socket.emit('play', { soundName: btn.dataset.soundName });
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
